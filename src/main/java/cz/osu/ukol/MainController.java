@@ -1,5 +1,7 @@
 package cz.osu.ukol;
 
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,7 +9,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
@@ -27,6 +33,8 @@ public class MainController {
     private Label errorLabel;
     @FXML
     private GridPane matrixPane;
+    @FXML
+    private GridPane mainPane;
     @FXML
     private Button calculateButton;
 
@@ -58,6 +66,42 @@ public class MainController {
     }
 
     @FXML
+    public void onFileButtonClick() {
+        Stage stage = (Stage) mainPane.getScene().getWindow();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Zvol soubor s daty.");
+        File file = fileChooser.showOpenDialog(stage);
+
+        try {
+            Gson gson = new Gson();
+            JsonReader reader = new JsonReader(new FileReader(file));
+            JsonElement jelement = JsonParser.parseReader(reader);
+            JsonObject jobject = jelement.getAsJsonObject();
+
+            String input = jobject.get("input").getAsString();
+            int choice = jobject.get("option").getAsInt();
+            int[][] arr = gson.fromJson(jobject.getAsJsonArray("array"), int[][].class);
+
+            inputField.setText(input);
+            codeChoiceList.getSelectionModel().select(choice);
+            CodeType code = (CodeType) codeChoiceList.getSelectionModel().getSelectedItem();
+            updateMatrix(code);
+
+            for(int i = 0; i < matrix.length;i++) {
+                for(int j = 0; j < matrix[0].length; j++) {
+                    matrix[i][j].setText(Integer.toString(arr[i][j]));
+                    System.out.println(arr[i][j]);
+                }
+            }
+            errorLabel.setText("");
+        }
+        catch (Exception e) {
+            errorLabel.setText("Soubor nelze načíst.");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
     public void onCalculateButtonClick() {
         String input = inputField.getText();
         CodeType code = (CodeType) codeChoiceList.getSelectionModel().getSelectedItem();
@@ -71,15 +115,21 @@ public class MainController {
         dField.setText(Integer.toString(d));
 
         String result;
+        int syndrome;
         if(input.length() == code.getNumberOfInfoBits()) {
             result = calc.encode(input);
             outputField.setText(result);
-            synField.setText(Integer.toString(calc.calcSyndrome(result)));
+            syndrome = calc.calcSyndrome(result);
         }
         else {
             result = calc.decode(input);
             outputField.setText(result);
-            synField.setText(Integer.toString(calc.calcSyndrome(input)));
+            syndrome = calc.calcSyndrome(input);
+
+        }
+        synField.setText(Integer.toString((syndrome)));
+        if(syndrome != 0){
+            errorLabel.setText("Nenulový syndrom!");
         }
     }
 
