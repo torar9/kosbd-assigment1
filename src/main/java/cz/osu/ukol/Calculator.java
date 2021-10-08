@@ -19,7 +19,7 @@ public class Calculator {
 
     /**
      * Zakóduje bitovou zprávu.
-     * @param message zpráva složená z bitů
+     * @param message zpráva k dekódování složená z bitů
      * @return Vrátí zakódovanou zprávu
      */
     public String encode(String message) {
@@ -30,6 +30,15 @@ public class Calculator {
                 .toArray();
 
         return arrayToString(multiplyMatrix(tmp, GMatrix));
+    }
+
+    /**
+     * Dekóduje bitovou zprávu
+     * @param message zpráva k zakódování složená z bitů
+     * @return Vrátí dekódovanou zprávu
+     */
+    public String decode(String message) {
+        return message.substring(0, code.getNumberOfInfoBits());
     }
 
     /**

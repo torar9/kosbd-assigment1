@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
@@ -28,6 +25,8 @@ public class MainController {
     private TextField outputField;
     @FXML
     private TextField dField;
+    @FXML
+    private Button calculateButton;
 
     private ArrayList<CodeType> codeList;
     private TextField[][] matrix;
@@ -68,16 +67,35 @@ public class MainController {
         Calculator calc = new Calculator(matrix, code);
         int d = calc.getMinHammingLen();
         dField.setText(Integer.toString(d));
-        String decodedMsg = calc.encode(input);
-        outputField.setText(decodedMsg);
+
+        if(input.length() == code.getNumberOfInfoBits()) {
+            String encodedMsg = calc.encode(input);
+            outputField.setText(encodedMsg);
+        }
+        else if(input.length() == code.getLength()) {
+            String decodedMsg = calc.decode(input);
+            outputField.setText(decodedMsg);
+        }
     }
 
     @FXML
     public void onInputFieldTyped() {
         String input = inputField.getText();
         CodeType code = (CodeType) codeChoiceList.getSelectionModel().getSelectedItem();
+        int len = input.length();
 
-        if(input.length() < code.getLength()) {
+        if(len < code.getNumberOfInfoBits())
+            calculateButton.setDisable(true);
+        else if(len == code.getNumberOfInfoBits()) {
+            calculateButton.setDisable(false);
+            calculateButton.setText("Zakódovat");
+        }
+        else if(len == code.getLength()) {
+            calculateButton.setDisable(false);
+            calculateButton.setText("Dekódovat");
+        }
+        else {
+            calculateButton.setDisable(true);
         }
     }
 
@@ -120,7 +138,7 @@ public class MainController {
             return false;
         }
 
-        if(input.length() < code.getNumberOfInfoBits() || input.length() > code.getNumberOfInfoBits()) {
+        if(input.length() != code.getNumberOfInfoBits() && input.length() != code.getLength()) {
             errorLabel.setText("Neplatná délka kódu.");
             return false;
         }
