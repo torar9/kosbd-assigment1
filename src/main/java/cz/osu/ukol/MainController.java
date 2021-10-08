@@ -16,15 +16,17 @@ public class MainController {
     @FXML
     private TextField inputField;
     @FXML
+    private TextField outputField;
+    @FXML
+    private TextField dField;
+    @FXML
+    private TextField synField;
+    @FXML
     private ComboBox codeChoiceList;
     @FXML
     private Label errorLabel;
     @FXML
     private GridPane matrixPane;
-    @FXML
-    private TextField outputField;
-    @FXML
-    private TextField dField;
     @FXML
     private Button calculateButton;
 
@@ -68,13 +70,16 @@ public class MainController {
         int d = calc.getMinHammingLen();
         dField.setText(Integer.toString(d));
 
+        String result;
         if(input.length() == code.getNumberOfInfoBits()) {
-            String encodedMsg = calc.encode(input);
-            outputField.setText(encodedMsg);
+            result = calc.encode(input);
+            outputField.setText(result);
+            synField.setText(Integer.toString(calc.calcSyndrome(result)));
         }
-        else if(input.length() == code.getLength()) {
-            String decodedMsg = calc.decode(input);
-            outputField.setText(decodedMsg);
+        else {
+            result = calc.decode(input);
+            outputField.setText(result);
+            synField.setText(Integer.toString(calc.calcSyndrome(input)));
         }
     }
 
@@ -84,17 +89,22 @@ public class MainController {
         CodeType code = (CodeType) codeChoiceList.getSelectionModel().getSelectedItem();
         int len = input.length();
 
-        if(len < code.getNumberOfInfoBits())
+        if(len < code.getNumberOfInfoBits()) {
             calculateButton.setDisable(true);
+            errorLabel.setText("Neplatná délka kódu.");
+        }
         else if(len == code.getNumberOfInfoBits()) {
             calculateButton.setDisable(false);
             calculateButton.setText("Zakódovat");
+            errorLabel.setText("");
         }
         else if(len == code.getLength()) {
             calculateButton.setDisable(false);
             calculateButton.setText("Dekódovat");
+            errorLabel.setText("");
         }
         else {
+            errorLabel.setText("Neplatná délka kódu.");
             calculateButton.setDisable(true);
         }
     }

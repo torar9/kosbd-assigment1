@@ -33,6 +33,25 @@ public class Calculator {
     }
 
     /**
+     * Vypočítá syndrom
+     * @param message Zakódovaná zpráva v bitech
+     * @return Vypočítaný syndrom
+     */
+    public int calcSyndrome(String message) {
+        int tmp[][] = new int[code.getLength()][1];
+
+        int tmp2[] = Stream.of(message.split(""))
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
+        for(int i = 0; i < tmp2.length; i++) {
+            tmp[i][0] = tmp2[i];
+        }
+
+        return Integer.parseInt(arrayToString(multiplyMatrix(HMatrix, tmp)));
+    }
+
+    /**
      * Dekóduje bitovou zprávu
      * @param message zpráva k zakódování složená z bitů
      * @return Vrátí dekódovanou zprávu
