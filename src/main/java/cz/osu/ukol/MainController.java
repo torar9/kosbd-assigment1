@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -211,6 +213,12 @@ public class MainController {
                 matrix[y][x] = tf;
             }
         }
+/*
+        Parent parent = matrixPane.getParent().getParent();
+        double widthP = parent.getBoundsInParent().getWidth();
+        double heightP = parent.getBoundsInParent().getHeight();
+        double width = matrixPane.getBoundsInParent().getWidth();
+        double height = matrixPane.getBoundsInParent().getHeight();*/
     }
 
     private boolean checkInput(String input, CodeType code) {

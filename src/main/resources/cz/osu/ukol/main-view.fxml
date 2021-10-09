@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
@@ -60,7 +61,7 @@
                 </TextField>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ComboBox fx:id="codeChoiceList" onAction="#onComboAction" prefWidth="150.0">
+                  <ComboBox fx:id="codeChoiceList" onAction="#onComboAction" prefHeight="24.0" prefWidth="129.0">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
@@ -169,46 +170,36 @@
           <RowConstraints maxHeight="395.0" minHeight="10.0" prefHeight="391.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane fx:id="matrixPane">
-              <columnConstraints>
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-                  <ColumnConstraints />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
-              </rowConstraints>
+            <Pane>
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>
-            </GridPane>
+               <children>
+                  <GridPane fx:id="matrixPane">
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints valignment="CENTER" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </Pane>
          </children>
       </GridPane>
     </children>
