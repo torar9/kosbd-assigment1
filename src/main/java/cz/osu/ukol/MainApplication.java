@@ -11,8 +11,10 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 620, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 600, 550);
         stage.setTitle("KOSBD - úkol č. 1");
+        stage.setMinHeight(600);
+        stage.setMinWidth(550);
         stage.setScene(scene);
         stage.show();
     }
