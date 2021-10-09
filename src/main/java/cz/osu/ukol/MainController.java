@@ -28,9 +28,13 @@ public class MainController {
     @FXML
     private TextField synField;
     @FXML
+    private TextField fixedField;
+    @FXML
     private ComboBox codeChoiceList;
     @FXML
     private Label errorLabel;
+    @FXML
+    private Label fixedLabel;
     @FXML
     private GridPane matrixPane;
     @FXML
@@ -90,7 +94,6 @@ public class MainController {
             for(int i = 0; i < matrix.length;i++) {
                 for(int j = 0; j < matrix[0].length; j++) {
                     matrix[i][j].setText(Integer.toString(arr[i][j]));
-                    System.out.println(arr[i][j]);
                 }
             }
             errorLabel.setText("");
@@ -130,6 +133,24 @@ public class MainController {
         synField.setText(Integer.toString((syndrome)));
         if(syndrome != 0){
             errorLabel.setText("Nenulový syndrom!");
+            CodeReport rep = calc.getCodereport(input);
+            if(rep.isCanBeFixed()) {
+                fixedLabel.setDisable(false);
+                fixedField.setDisable(false);
+
+                int pos = rep.getBitFlipPosition() - 1;
+                if(input.charAt(rep.getBitFlipPosition() - 1) == '0')
+                    input = input.substring(0, pos) + "1" + input.substring(pos + 1);
+                else input = input.substring(0, pos) + "0" + input.substring(pos + 1);
+
+                fixedField.setText(input);
+            }
+            else errorLabel.setText("Chybu v kódu nelze opravit.");
+        }
+        else {
+            fixedLabel.setDisable(true);
+            fixedField.clear();
+            fixedField.setDisable(true);
         }
     }
 

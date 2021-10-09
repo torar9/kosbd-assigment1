@@ -2,6 +2,7 @@ package cz.osu.ukol;
 
 import lombok.Getter;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Calculator {
@@ -9,6 +10,7 @@ public class Calculator {
     @Getter private int[][] HMatrix;
     @Getter final private CodeType code;
     @Getter private int minHammingLen;
+    private int[][] syndrom;
 
     Calculator(int[][] GMatrix, CodeType code) {
         this.GMatrix = GMatrix;
@@ -48,7 +50,39 @@ public class Calculator {
             tmp[i][0] = tmp2[i];
         }
 
-        return Integer.parseInt(arrayToString(multiplyMatrix(HMatrix, tmp)));
+        syndrom = multiplyMatrix(HMatrix, tmp);
+
+        return Integer.parseInt(arrayToString(syndrom));
+    }
+
+    public CodeReport getCodereport(String input) {
+        if(syndrom == null)
+            throw new NullPointerException("Syndrom is not set up");
+
+        if(Integer.parseInt(arrayToString(syndrom)) == 0)
+            return new CodeReport(false, true,-1);
+
+        int counter = 0;
+        int pos = -1;
+        int j = 0;
+        for(int i = 0; i < HMatrix[0].length; i++) {
+            int tmp = 0;
+            for(j = 0; j < HMatrix.length; j++) {
+                if(HMatrix[j][i] == syndrom[j][0])
+                    tmp++;
+            }
+            if(tmp == HMatrix.length) {
+                pos = i + 1;
+                counter++;
+            }
+            tmp = 0;
+        }
+
+        if(counter > 1) {
+            return new CodeReport(true, false, -1);
+        }
+
+        return new CodeReport(true, true, pos);
     }
 
     /**
