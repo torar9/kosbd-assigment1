@@ -51,6 +51,7 @@ public class MainController {
     @FXML
     public void initialize() {
         codeList = new ArrayList<CodeType>();
+        codeList.add(new CodeType(6, 2));
         codeList.add(new CodeType(7, 4));
         codeList.add(new CodeType(8, 4));
         codeList.add(new CodeType(15, 11));

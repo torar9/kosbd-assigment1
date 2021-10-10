@@ -84,7 +84,7 @@ public class Calculator {
             tmp = 0;
         }
 
-        if(counter > 1) {
+        if(counter == 0) {
             return new CodeReport(true, false, -1);
         }
 
@@ -134,7 +134,7 @@ public class Calculator {
             for(int j = 0; j < code.getNumberOfInfoBits(); j++) {
                 if(i == j)
                     continue;
-                for(int x = 0; x < code.getLength(); x++){ // Kombinuji veškeré řádky
+                for(int x = 0; x < code.getLength(); x++) { // Kombinuji veškeré řádky
                     int num1 = GMatrix[i][x];
                     int num2 = GMatrix[j][x];
 
