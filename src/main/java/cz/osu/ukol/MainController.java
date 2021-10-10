@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.File;
 import java.io.FileReader;
@@ -132,7 +133,7 @@ public class MainController {
             syndrome = calc.calcSyndrome(input);
 
         }
-        synField.setText(Integer.toString((syndrome)));
+        synField.setText(StringUtils.leftPad(Integer.toString(syndrome), calc.getCode().getRedundancy(), '0'));
         if(syndrome != 0){
             errorLabel.setText("Nenulový syndrom!");
             CodeReport rep = calc.getCodereport(input);
