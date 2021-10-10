@@ -99,6 +99,7 @@ public class MainController {
                 }
             }
             errorLabel.setText("");
+            this.onCalculateButtonClick();
         }
         catch (Exception e) {
             errorLabel.setText("Soubor nelze načíst.");
