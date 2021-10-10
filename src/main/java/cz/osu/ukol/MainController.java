@@ -9,6 +9,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.lang.StringUtils;
@@ -52,6 +54,7 @@ public class MainController {
         codeList.add(new CodeType(6, 2));
         codeList.add(new CodeType(7, 4));
         codeList.add(new CodeType(8, 4));
+        matrixPane.setAlignment(Pos.CENTER);
 
         Pattern CodeInputPattern = Pattern.compile("^[0-1]+$|^$");
 
@@ -63,7 +66,6 @@ public class MainController {
         codeChoiceList.setItems(FXCollections.observableArrayList(codeList));
         codeChoiceList.getSelectionModel().select(0);
         updateMatrix(codeList.get(0));
-        matrixPane.setAlignment(Pos.CENTER);
     }
 
     @FXML

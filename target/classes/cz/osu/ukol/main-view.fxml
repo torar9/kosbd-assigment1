@@ -7,11 +7,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.osu.ukol.MainController">
+<GridPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.osu.ukol.MainController">
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints hgrow="SOMETIMES" />
@@ -85,7 +85,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="fileButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onFileButtonClick" prefHeight="24.0" prefWidth="95.0" text="importovat" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onFileButtonClick" prefHeight="24.0" prefWidth="95.0" text="importovat" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Button>
@@ -161,9 +161,9 @@
           <RowConstraints maxHeight="395.0" minHeight="10.0" prefHeight="391.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane>
+            <VBox>
                <children>
-                  <GridPane fx:id="matrixPane" layoutX="2.0" prefWidth="594.0">
+                  <GridPane fx:id="matrixPane">
                     <columnConstraints>
                         <ColumnConstraints />
                         <ColumnConstraints />
@@ -193,7 +193,7 @@
                      </padding>
                   </GridPane>
                </children>
-            </Pane>
+            </VBox>
          </children>
       </GridPane>
     </children>
