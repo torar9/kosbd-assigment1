@@ -102,7 +102,7 @@ public class MainController {
         }
         catch (Exception e) {
             errorLabel.setText("Soubor nelze načíst.");
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -182,6 +182,10 @@ public class MainController {
         }
     }
 
+    /**
+     * Aktualizuji matici v UI.
+     * @param code
+     */
     private void updateMatrix(CodeType code) {
         matrix = new TextField[code.getNumberOfInfoBits()][code.getLength()];
         matrixPane.getChildren().removeAll();
@@ -221,6 +225,13 @@ public class MainController {
         double height = matrixPane.getBoundsInParent().getHeight();*/
     }
 
+    /**
+     * Kontroluji uživatelský vstup.
+     * V případě chyby informuji uživatele prostřednictvím textového pole v UI.
+     * @param input
+     * @param code
+     * @return
+     */
     private boolean checkInput(String input, CodeType code) {
         if(input.isEmpty()) {
             errorLabel.setText("Prázdný vstup");
