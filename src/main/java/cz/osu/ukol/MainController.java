@@ -5,12 +5,13 @@ import com.google.gson.stream.JsonReader;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
+import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.lang.StringUtils;
@@ -65,6 +66,7 @@ public class MainController {
         codeChoiceList.setItems(FXCollections.observableArrayList(codeList));
         codeChoiceList.getSelectionModel().select(0);
         updateMatrix(codeList.get(0));
+        matrixPane.setAlignment(Pos.CENTER);
     }
 
     @FXML
@@ -213,17 +215,10 @@ public class MainController {
                         (UnaryOperator<TextFormatter.Change>)
                                 change -> CodeInputPattern.matcher(change.getControlNewText()).matches() ? change : null);
                 tf.setTextFormatter(inputFormatter);
-
                 matrixPane.add(tf, x, y, 1, 1);
                 matrix[y][x] = tf;
             }
         }
-/*
-        Parent parent = matrixPane.getParent().getParent();
-        double widthP = parent.getBoundsInParent().getWidth();
-        double heightP = parent.getBoundsInParent().getHeight();
-        double width = matrixPane.getBoundsInParent().getWidth();
-        double height = matrixPane.getBoundsInParent().getHeight();*/
     }
 
     /**

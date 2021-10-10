@@ -162,11 +162,8 @@
         </rowConstraints>
          <children>
             <Pane>
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin>
                <children>
-                  <GridPane fx:id="matrixPane">
+                  <GridPane fx:id="matrixPane" layoutX="2.0" prefWidth="594.0">
                     <columnConstraints>
                         <ColumnConstraints />
                         <ColumnConstraints />
@@ -181,8 +178,8 @@
                         <ColumnConstraints />
                         <ColumnConstraints />
                         <ColumnConstraints />
-                        <ColumnConstraints />
-                        <ColumnConstraints />
+                        <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+                        <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints vgrow="SOMETIMES" />
@@ -196,9 +193,6 @@
                      </padding>
                   </GridPane>
                </children>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
             </Pane>
          </children>
       </GridPane>
