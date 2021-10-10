@@ -47,7 +47,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <TextField fx:id="inputField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputFieldTyped" prefHeight="28.0" prefWidth="131.0" promptText="0101" text="1011" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                <TextField fx:id="inputField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputFieldTyped" prefHeight="28.0" prefWidth="131.0" promptText="0101" text="11" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -62,7 +62,7 @@
                <padding>
                   <Insets right="5.0" />
                </padding></Label>
-                <Button fx:id="calculateButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onCalculateButtonClick" text="zakódovat" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Button fx:id="calculateButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onCalculateButtonClick" prefHeight="24.0" prefWidth="94.0" text="zakódovat" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></Button>
@@ -85,7 +85,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button fx:id="fileButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onFileButtonClick" text="Načíst soubor" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <Button fx:id="fileButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onFileButtonClick" prefHeight="24.0" prefWidth="95.0" text="importovat" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Button>

@@ -54,7 +54,6 @@ public class MainController {
         codeList.add(new CodeType(6, 2));
         codeList.add(new CodeType(7, 4));
         codeList.add(new CodeType(8, 4));
-        codeList.add(new CodeType(15, 11));
 
         Pattern CodeInputPattern = Pattern.compile("^[0-1]+$|^$");
 
