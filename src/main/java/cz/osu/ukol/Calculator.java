@@ -2,7 +2,6 @@ package cz.osu.ukol;
 
 import lombok.Getter;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Calculator {
@@ -55,6 +54,13 @@ public class Calculator {
         return Integer.parseInt(arrayToString(syndrom));
     }
 
+    /**
+     * Zjistí zda se v kódě vyskytuje chyba podle syndromu.
+     * V případě že ano, tak se zjistí pozice chybného bitu.
+     * Pokud chybu nelze najít, tak pouze zaznamená že došlo k chybě.
+     * @param input
+     * @return
+     */
     public CodeReport getCodereport(String input) {
         if(syndrom == null)
             throw new NullPointerException("Syndrom is not set up");
@@ -121,7 +127,7 @@ public class Calculator {
      * Vypočítá minimální Hammingovu vzdálenost d
      */
     private void calcHammingLen() {
-        int result = 1000;
+        int result = Integer.MAX_VALUE;
 
         for(int i = 0; i < code.getNumberOfInfoBits(); i++) {
             int tmpD = 0;
@@ -170,6 +176,11 @@ public class Calculator {
         return C;
     }
 
+    /**
+     * Pomocná třída pro převod pole do řetězce.
+     * @param arr
+     * @return
+     */
     private String arrayToString(int arr[][]) {
         String result = "";
         for(int i = 0; i < arr.length; i++) {
