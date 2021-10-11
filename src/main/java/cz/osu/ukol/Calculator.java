@@ -2,6 +2,7 @@ package cz.osu.ukol;
 
 import lombok.Getter;
 
+import java.util.*;
 import java.util.stream.Stream;
 
 public class Calculator {
@@ -61,7 +62,7 @@ public class Calculator {
      * @param input
      * @return
      */
-    public CodeReport getCodereport(String input) {
+    public CodeReport getCodeReport(String input) {
         if(syndrom == null)
             throw new NullPointerException("Syndrom is not set up");
 
@@ -189,5 +190,16 @@ public class Calculator {
             }
         }
         return result;
+    }
+
+    static void swap(int mat[][],
+                     int row1, int row2, int col)
+    {
+        for (int i = 0; i < col; i++)
+        {
+            int temp = mat[row1][i];
+            mat[row1][i] = mat[row2][i];
+            mat[row2][i] = temp;
+        }
     }
 }

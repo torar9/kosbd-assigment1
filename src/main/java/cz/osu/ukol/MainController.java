@@ -9,8 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.lang.StringUtils;
@@ -71,6 +69,7 @@ public class MainController {
     @FXML
     public void onComboAction() {
         updateMatrix((CodeType) codeChoiceList.getSelectionModel().getSelectedItem());
+        onInputFieldTyped();
     }
 
     @FXML
@@ -93,6 +92,8 @@ public class MainController {
             inputField.setText(input);
             codeChoiceList.getSelectionModel().select(choice);
             CodeType code = (CodeType) codeChoiceList.getSelectionModel().getSelectedItem();
+
+
             updateMatrix(code);
 
             for(int i = 0; i < matrix.length;i++) {
@@ -101,7 +102,8 @@ public class MainController {
                 }
             }
             errorLabel.setText("");
-            this.onCalculateButtonClick();
+            onInputFieldTyped();
+            onCalculateButtonClick();
         }
         catch (Exception e) {
             errorLabel.setText("Soubor nelze načíst.");
@@ -136,13 +138,13 @@ public class MainController {
 
         }
         synField.setText(StringUtils.leftPad(Integer.toString(syndrome), calc.getCode().getRedundancy(), '0'));
-        if(syndrome != 0){
+        if(syndrome != 0) {
+            outputField.setText("");
             errorLabel.setText("Nenulový syndrom!");
-            CodeReport rep = calc.getCodereport(input);
-            if(rep.isCanBeFixed()) {
+            CodeReport rep = calc.getCodeReport(input);
+            if(rep.isCanBeFixed() && d > 2) {
                 fixedLabel.setDisable(false);
                 fixedField.setDisable(false);
-
                 int pos = rep.getBitFlipPosition() - 1;
                 if(input.charAt(rep.getBitFlipPosition() - 1) == '0')
                     input = input.substring(0, pos) + "1" + input.substring(pos + 1);
