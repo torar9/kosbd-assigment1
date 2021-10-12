@@ -37,6 +37,8 @@ public class MainController {
     @FXML
     private Label fixedLabel;
     @FXML
+    private TextField rankField;
+    @FXML
     private GridPane matrixPane;
     @FXML
     private GridPane mainPane;
@@ -121,6 +123,15 @@ public class MainController {
 
         int[][] matrix = getIntArray(code);
         Calculator calc = new Calculator(matrix, code);
+        int rank = calc.calculateRank();
+
+        rankField.setText(Integer.toString(rank));
+
+        if(rank != code.getNumberOfInfoBits()) {
+            errorLabel.setText("Hodnost matice neodpovídá požadavkům!");
+            return;
+        }
+
         int d = calc.getMinHammingLen();
         dField.setText(Integer.toString(d));
 
@@ -129,12 +140,12 @@ public class MainController {
         if(input.length() == code.getNumberOfInfoBits()) {
             result = calc.encode(input);
             outputField.setText(result);
-            syndrome = calc.calcSyndrome(result);
+            syndrome = (int)calc.calcSyndrome(result);
         }
         else {
             result = calc.decode(input);
             outputField.setText(result);
-            syndrome = calc.calcSyndrome(input);
+            syndrome = (int)calc.calcSyndrome(input);
 
         }
         synField.setText(StringUtils.leftPad(Integer.toString(syndrome), calc.getCode().getRedundancy(), '0'));
@@ -271,5 +282,10 @@ public class MainController {
         }
 
         return result;
+    }
+
+    public int calculateRank() {
+        //SimpleMatrix expResult = new SimpleMatrix(expData);
+        return 0;
     }
 }

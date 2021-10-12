@@ -1,19 +1,21 @@
 package cz.osu.ukol;
 
 import lombok.Getter;
+import org.ejml.dense.row.MatrixFeatures_DDRM;
+import org.ejml.simple.SimpleMatrix;
 
 import java.util.*;
 import java.util.stream.Stream;
 
 public class Calculator {
-    @Getter final private int[][] GMatrix;
-    @Getter private int[][] HMatrix;
+    @Getter final private double[][] GMatrix;
+    @Getter private double[][] HMatrix;
     @Getter final private CodeType code;
     @Getter private int minHammingLen;
-    private int[][] syndrom;
+    private double[][] syndrom;
 
     Calculator(int[][] GMatrix, CodeType code) {
-        this.GMatrix = GMatrix;
+        this.GMatrix = intArrToDoubleArr(GMatrix);
         this.code = code;
         calcHMatrix();
         calcHammingLen();
@@ -25,10 +27,10 @@ public class Calculator {
      * @return Vrátí zakódovanou zprávu
      */
     public String encode(String message) {
-        int tmp[][] = new int[1][code.getNumberOfInfoBits()];
+        double tmp[][] = new double[1][code.getNumberOfInfoBits()];
 
         tmp[0] = Stream.of(message.split(""))
-                .mapToInt(Integer::parseInt)
+                .mapToDouble(Double::parseDouble)
                 .toArray();
 
         return arrayToString(multiplyMatrix(tmp, GMatrix));
@@ -39,11 +41,11 @@ public class Calculator {
      * @param message Zakódovaná zpráva v bitech
      * @return Vypočítaný syndrom
      */
-    public int calcSyndrome(String message) {
-        int tmp[][] = new int[code.getLength()][1];
+    public double calcSyndrome(String message) {
+        double tmp[][] = new double[code.getLength()][1];
 
-        int tmp2[] = Stream.of(message.split(""))
-                .mapToInt(Integer::parseInt)
+        double tmp2[] = Stream.of(message.split(""))
+                .mapToDouble(Double::parseDouble)
                 .toArray();
 
         for(int i = 0; i < tmp2.length; i++) {
@@ -52,7 +54,7 @@ public class Calculator {
 
         syndrom = multiplyMatrix(HMatrix, tmp);
 
-        return Integer.parseInt(arrayToString(syndrom));
+        return Double.parseDouble(arrayToString(syndrom));
     }
 
     /**
@@ -105,7 +107,7 @@ public class Calculator {
      * Vytvoří kontrolní matici H
      */
     private void calcHMatrix() {
-        HMatrix = new int[code.getRedundancy()][code.getLength()];
+        HMatrix = new double[code.getRedundancy()][code.getLength()];
 
         for(int i = 0; i < code.getNumberOfInfoBits(); i++) {
             for(int j = code.getNumberOfInfoBits(); j < code.getLength(); j++) {
@@ -136,8 +138,8 @@ public class Calculator {
                 if(i == j)
                     continue;
                 for(int x = 0; x < code.getLength(); x++) { // Kombinuji veškeré řádky
-                    int num1 = GMatrix[i][x];
-                    int num2 = GMatrix[j][x];
+                    double num1 = GMatrix[i][x];
+                    double num2 = GMatrix[j][x];
 
                     if(num1 != num2)
                         tmpD++;
@@ -157,9 +159,9 @@ public class Calculator {
      * @param B
      * @return Vrátí roznásobenou matici
      */
-    private int[][] multiplyMatrix(int A[][], int B[][])
+    private double[][] multiplyMatrix(double A[][], double B[][])
     {
-        int C[][] = new int[A.length][B[0].length];
+        double C[][] = new double[A.length][B[0].length];
 
         for (int i = 0; i < A.length; i++) {
             for (int j = 0; j < B[0].length; j++) {
@@ -182,24 +184,40 @@ public class Calculator {
      * @param arr
      * @return
      */
-    private String arrayToString(int arr[][]) {
+    private String arrayToString(double arr[][]) {
         String result = "";
         for(int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
-                result += arr[i][j];
+                result += (int)arr[i][j];
             }
         }
         return result;
     }
 
-    static void swap(int mat[][],
-                     int row1, int row2, int col)
-    {
-        for (int i = 0; i < col; i++)
-        {
-            int temp = mat[row1][i];
-            mat[row1][i] = mat[row2][i];
-            mat[row2][i] = temp;
+    private double[][] intArrToDoubleArr(int arr[][]) {
+        double result[][] = new double[arr.length][arr[0].length];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = (double)arr[i][j];
+            }
         }
+        return result;
+    }
+
+    private int[][] doubleArrToIntArr(double arr[][]) {
+        int result[][] = new int[arr.length][arr[0].length];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = (int)arr[i][j];
+            }
+        }
+        return result;
+    }
+
+    public int calculateRank() {
+        SimpleMatrix expResult = new SimpleMatrix(GMatrix);
+        return MatrixFeatures_DDRM.rank(expResult.getDDRM());
     }
 }

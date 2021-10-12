@@ -6,6 +6,8 @@ module cz.osu.ukol {
     requires commons.lang;
 
     requires static lombok;
+    requires static ejml.simple;
+    requires static ejml.ddense;
     requires com.google.gson;
 
     opens cz.osu.ukol to javafx.fxml;

@@ -34,6 +34,7 @@
                 <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label alignment="CENTER_RIGHT" text="Informace:" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
@@ -62,7 +63,7 @@
                <padding>
                   <Insets right="5.0" />
                </padding></Label>
-                <Button fx:id="calculateButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onCalculateButtonClick" prefHeight="24.0" prefWidth="94.0" text="zakódovat" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                <Button fx:id="calculateButton" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onCalculateButtonClick" prefHeight="24.0" prefWidth="94.0" text="zakódovat" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin></Button>
@@ -85,11 +86,11 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onFileButtonClick" prefHeight="24.0" prefWidth="95.0" text="importovat" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#onFileButtonClick" prefHeight="24.0" prefWidth="95.0" text="importovat" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin></Button>
-            <Label alignment="CENTER_RIGHT" text="d:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" text="d:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <padding>
                   <Insets right="5.0" />
                </padding>
@@ -100,7 +101,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="dField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputFieldTyped" prefHeight="30.0" prefWidth="128.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+            <TextField fx:id="dField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputFieldTyped" prefHeight="30.0" prefWidth="128.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -109,7 +110,7 @@
                </font>
             </TextField>
             <Label fx:id="errorLabel" alignment="CENTER" style="-fx-text-fill: red;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-            <Label alignment="CENTER_RIGHT" text="Syndrom:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="80.0" text="Syndrom:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <padding>
                   <Insets right="5.0" />
                </padding>
@@ -120,7 +121,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="synField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputFieldTyped" prefHeight="30.0" prefWidth="128.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+            <TextField fx:id="synField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputFieldTyped" prefHeight="30.0" prefWidth="128.0" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -148,6 +149,25 @@
                </font>
             </TextField>
             <ComboBox fx:id="codeChoiceList" onAction="#onComboAction" prefHeight="24.0" prefWidth="129.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="81.0" text="Hodnost:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="rankField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onInputFieldTyped" prefHeight="30.0" prefWidth="128.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
             </children>
             <opaqueInsets>
                 <Insets />

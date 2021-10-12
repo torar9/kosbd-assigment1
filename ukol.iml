@@ -16,6 +16,15 @@
     <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:linux:11.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:11.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-base:linux:11.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-all:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-core:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-fdense:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-ddense:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-cdense:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-zdense:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-dsparse:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-simple:0.41" level="project" />
+    <orderEntry type="library" name="Maven: org.ejml:ejml-fsparse:0.41" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.8" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:11.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:linux:11.0.2" level="project" />
