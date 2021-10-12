@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.osu.ukol.MainController">
+<GridPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="550.0" minWidth="600.0" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.osu.ukol.MainController">
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints hgrow="SOMETIMES" />
@@ -110,7 +110,7 @@
                </font>
             </TextField>
             <Label fx:id="errorLabel" alignment="CENTER" style="-fx-text-fill: red;" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-            <Label alignment="CENTER_RIGHT" text="Syndrom:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="80.0" text="Syndrom:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <padding>
                   <Insets right="5.0" />
                </padding>
@@ -149,7 +149,7 @@
                </font>
             </TextField>
             <ComboBox fx:id="codeChoiceList" onAction="#onComboAction" prefHeight="24.0" prefWidth="129.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label alignment="CENTER_RIGHT" text="Hodnost" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="81.0" text="Hodnost:" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <padding>
                   <Insets right="5.0" />
                </padding>

@@ -4,7 +4,6 @@ import lombok.Getter;
 import org.ejml.dense.row.MatrixFeatures_DDRM;
 import org.ejml.simple.SimpleMatrix;
 
-import java.util.*;
 import java.util.stream.Stream;
 
 public class Calculator {
@@ -216,6 +215,10 @@ public class Calculator {
         return result;
     }
 
+    /**
+     * Slouží pro výpočet hodnosti generující matice.
+     * @return Hodnost matice
+     */
     public int calculateRank() {
         SimpleMatrix expResult = new SimpleMatrix(GMatrix);
         return MatrixFeatures_DDRM.rank(expResult.getDDRM());
